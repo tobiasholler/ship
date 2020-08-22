@@ -1,0 +1,23 @@
+#!/bin/bash
+
+export TARGET_FILE=".sshclip_shelf_file"
+export TRANSFER_FILE=".sshclip_transfer"
+
+if [ $1 = "shelf" ]; then
+    [ -r $2 ] || (echo "The file `$2` does not exist or cannot be read."; exit)
+    tar -czf $TARGET_FILE $2
+elif [ $1 = "unshelf" ]; then
+    [ -r $TARGET_FILE ] || (echo "No file on shelf."; exit)
+    tar -zxf $HOME/$TARGET_FILE
+elif [ $1 = "upload" ]; then
+    [ -r $3 ] || (echo "The file `$3` does not exist or cannot be read."; exit)
+    tar -czf $TRANSFER_FILE $3
+    scp $TRANSFER_FILE $2:~/$TARGET_FILE
+    #ssh $2 "(sleep 20; rm ~/$TARGET_FILE) &"
+    rm $TRANSFER_FILE
+elif [ $1 = "download" ]; then
+    scp $2:~/$TARGET_FILE $TRANSFER_FILE
+    tar -zxf $TRANSFER_FILE
+    rm $TRANSFER_FILE
+fi
+
