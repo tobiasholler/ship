@@ -26,3 +26,11 @@ $ ship unshelf file.zip
 
 The shelf is so to say the servers clipboard. The client can upload and download from and to it.
 Also works with with folders. Also supports bookmarks from `~/.ssh/config`.
+
+## Installation
+
+```sh
+git clone --depth=1 https://github.com/tobiasholler/ship
+sudo cp ship/ship /usr/bin
+sudo chown root:root /usr/bin/ship
+```
