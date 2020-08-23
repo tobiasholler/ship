@@ -32,5 +32,4 @@ Also works with with folders. Also supports bookmarks from `~/.ssh/config`.
 ```sh
 git clone --depth=1 https://github.com/tobiasholler/ship
 sudo cp ship/ship /usr/bin
-sudo chown root:root /usr/bin/ship
 ```
